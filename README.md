@@ -22,8 +22,8 @@ alisms.send_to!(138xxxxxxxx, {code: 1234})
 ```
 You can also use `send_sms` to send Alidayu sms, it's an alias of `send_to`.
 
-### Configration ###
-Before you sending any sms message, a valid configration is necessary.
+### Configuration ###
+Before you sending any sms message, a valid configuration is necessary.
 Alidayu-sms supports you use it under Rails or in pure Ruby environment.
 
 #### Rails ####
@@ -45,10 +45,12 @@ production:
 ```
 
 #### Non-rails ####
-If you are using Sinatra or anything pure Ruby, use `Alidayu::Sms.configration` to configrate Alidayu-sms.
+If you are using Sinatra or anything pure Ruby, use `Alidayu::Sms.configuration` to configrate Alidayu-sms.
 
 ```ruby
-Alidayu::Sms.configration do |config|
+require 'alidayu/sms'
+
+Alidayu::Sms.configuration do |config|
   config.access_key_id = YOUR_ACCESS_KEY_ID
   config.access_key_secret = YOUR_ACCESS_KEY_SECRET
 end

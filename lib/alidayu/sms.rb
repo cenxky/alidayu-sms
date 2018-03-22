@@ -64,7 +64,7 @@ module Alidayu
     end
 
     def send_to(*args)
-      send!(*args) rescue false
+      send_to!(*args) rescue false
     end
 
     alias send_sms send_to
