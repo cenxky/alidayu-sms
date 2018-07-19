@@ -1,5 +1,5 @@
 require_relative 'sms/version'
-%w(securerandom net/http ostruct openssl base64 yaml json cgi uri).each{|_| require _}
+%w(securerandom net/http ostruct openssl base64 erb yaml json cgi uri).each{|_| require _}
 
 module Alidayu
   class SettingError < StandardError; end
@@ -18,7 +18,7 @@ module Alidayu
       def setting
         return @setting if @setting && !@setting.to_h.nil?
         if defined?(Rails)
-          config = YAML.load_file("#{Rails.root}/config/alidayu.yml")[Rails.env]
+          config = YAML.load(ERB.new(File.read("#{Rails.root}/config/alidayu.yml")).result)[Rails.env]
           if !config.nil? then @setting = OpenStruct.new config else
             raise SettingError, setting_error_message(:rails)
           end
